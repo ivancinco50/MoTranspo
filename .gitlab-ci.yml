@@ -1,0 +1,13 @@
+deploy to demo:
+  stage: deploy
+  image: ruby:latest
+  script:
+    - apt-get update -qy
+    - apt-get install -qy ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=motranspo --api-key=2610d986-d4b1-412e-9d21-7964d14bb3de
+  environment:
+    name: motranspo
+    url: https://motranspo.herokuapp.com
+  only:
+    - develop
